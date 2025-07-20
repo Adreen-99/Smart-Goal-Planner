@@ -87,23 +87,6 @@ This will open the application in your browser at http://localhost:3000.
 
 Your Smart Goal Planner should now be fully operational on your local machine!
 
-## Project Structure
-
-smart-goal-planner/
-├── public/                 # Public assets (index.html)
-├── src/                    # React source code
-│   ├── components/         # Reusable React components (GoalCard, GoalForm, Navbar, Footer, Dashboard)
-│   ├── hooks/              # Custom React hooks (useGoals.js)
-│   ├── App.css             # Main application styles
-│   ├── App.jsx             # Main application component
-│   ├── index.js            # React entry point
-│   └── ...
-├── db.json                 # JSON Server data file (your goals will be stored here)
-├── .gitignore              # Specifies intentionally untracked files to ignore
-├── package.json            # Project dependencies and scripts
-├── README.md               # This file
-└── ...
-
 ## Deployment
 
 This project can be deployed with the frontend on GitHub Pages and the backend (JSON Server) on Render.
