@@ -49,13 +49,12 @@ Follow these instructions to get a copy of the project up and running on your lo
 Make sure you have [Node.js](https://nodejs.org/) and `npm` (Node Package Manager) installed on your system.
 You can check your versions by running:
 
-```bash
 
 node -v
 
 npm -v
 
-Installation
+## Installation
 
 Clone the repository:
 
@@ -71,7 +70,7 @@ Install JSON Server globally (if you haven't already):
 
 npm install -g json-server
 
-Running Locally
+## Running Locally
 
 To run the application locally, you need to start both the React development server (frontend) and the JSON Server (backend).
 
@@ -104,7 +103,8 @@ smart-goal-planner/
 ├── package.json            # Project dependencies and scripts
 ├── README.md               # This file
 └── ...
-Deployment
+
+## Deployment
 
 This project can be deployed with the frontend on GitHub Pages and the backend (JSON Server) on Render.
 
@@ -114,10 +114,7 @@ Install git-pages package:
 
 npm install --save-dev git-pages
 
-Add homepage and deploy scripts to package.json: Open your package.json file and add the homepage property and predeploy / deploy scripts within the scripts object:
-
-
-Contributing
+## Contributing
 
 Contributions, issues, and feature requests are welcome!
 
@@ -131,12 +128,14 @@ Push to the branch (git push origin feature/YourFeature).
 
 Open a Pull Request.
 
-Contact
+## Contact
+
 For questions or feedback:
 
 Email: githinjiadreen27@gmail.com
 
-License
+## License
+
 MIT License
 
 Copyright (c) 2025 Adreen Nyawira G.
