@@ -1,1 +1,117 @@
 # Smart-Goal-Planner
+
+## About The Project
+
+The Smart Goal Planner is a simple yet effective web application designed to help users set, track, and manage their financial saving goals. Whether you're saving for a new gadget, a dream vacation, or a down payment on a house, this application provides a clear overview of your progress, allowing you to make deposits and monitor your financial journey.
+
+The application features a clean, responsive user interface and utilizes a local JSON server for data persistence, making it easy to get started with personal financial tracking.
+
+## Features
+
+Goal Creation
+
+Goal Tracking 
+
+Deposit Functionality 
+
+Goal Editing & Deletion  
+
+Summary Overview 
+
+Simple Data Storage 
+
+Currency Support
+
+## Technologies Used
+
+Frontend:
+
+    * [React.js](https://react.dev/)
+
+    * [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)
+
+    * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
+Backend (Local/API):
+
+    * [JSON Server](https://github.com/typicode/json-server)
+
+Package Manager:
+
+    * [npm](https://www.npmjs.com/) (Node Package Manager)
+
+## Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+Make sure you have [Node.js](https://nodejs.org/) and `npm` (Node Package Manager) installed on your system.
+You can check your versions by running:
+
+```bash
+
+node -v
+
+npm -v
+
+Installation
+
+Clone the repository:
+
+git clone [https://github.com/Adreen-99/smart-goal-planner.git]
+
+cd smart-goal-planner
+
+Install frontend dependencies:
+
+npm install
+
+Install JSON Server globally (if you haven't already):
+
+npm install -g json-server
+
+Running Locally
+
+To run the application locally, you need to start both the React development server (frontend) and the JSON Server (backend).
+
+Start the JSON Server (Backend): Open a new terminal window in the project's root directory and run:
+
+json-server --watch db.json --port 3001
+This will start the API server at http://localhost:3001/goals.
+
+Start the React Development Server (Frontend): In your original terminal window (or another new one in the project root), run:
+
+npm start
+
+This will open the application in your browser at http://localhost:3000.
+
+Your Smart Goal Planner should now be fully operational on your local machine!
+
+## Project Structure
+
+smart-goal-planner/
+├── public/                 # Public assets (index.html)
+├── src/                    # React source code
+│   ├── components/         # Reusable React components (GoalCard, GoalForm, Navbar, Footer, Dashboard)
+│   ├── hooks/              # Custom React hooks (useGoals.js)
+│   ├── App.css             # Main application styles
+│   ├── App.jsx             # Main application component
+│   ├── index.js            # React entry point
+│   └── ...
+├── db.json                 # JSON Server data file (your goals will be stored here)
+├── .gitignore              # Specifies intentionally untracked files to ignore
+├── package.json            # Project dependencies and scripts
+├── README.md               # This file
+└── ...
+Deployment
+
+This project can be deployed with the frontend on GitHub Pages and the backend (JSON Server) on Render.
+
+Deploying Frontend (React) to GitHub Pages
+
+Install git-pages package:
+
+npm install --save-dev git-pages
+
+Add homepage and deploy scripts to package.json: Open your package.json file and add the homepage property and predeploy / deploy scripts within the scripts object:
