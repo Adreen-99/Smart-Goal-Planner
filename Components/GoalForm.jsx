@@ -1,34 +1,43 @@
-import {useState} from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function GoalForm({onAddGoal,onCancel }) {
+function GoalForm({ onAddGoal }) {
+  const navigate = useNavigate();
 
-    const[formData, setFormData] = useState({
-        name: "",
-        targetAmount: "",
-        category: "Other",
-        deadline: ""
-    });
+  const [formData, setFormData] = useState({
+    name: '',
+    targetAmount: '',
+    category: 'Other',
+    deadline: '',
+  });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev =>({ ...prev, [name]: value }));
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+
     const newGoal = {
       ...formData,
       targetAmount: Number(formData.targetAmount),
       savedAmount: 0,
-      createdAt: new Date().toISOString().split('T')[0]
+      createdAt: new Date().toISOString().split('T')[0],
     };
+
     onAddGoal(newGoal);
+    navigate('/'); // Navigate back to Dashboard after adding
+  };
+
+  const handleCancel = () => {
+    navigate('/'); // Navigate back to Dashboard on cancel
   };
 
   return (
-     <form onSubmit={handleSubmit} className="goal-form">
+    <form onSubmit={handleSubmit} className="goal-form">
       <h2>Add New Goal</h2>
-      
+
       <label>
         Goal Name:
         <input
@@ -39,7 +48,7 @@ function GoalForm({onAddGoal,onCancel }) {
           required
         />
       </label>
-      
+
       <label>
         Target Amount ($):
         <input
@@ -51,7 +60,7 @@ function GoalForm({onAddGoal,onCancel }) {
           required
         />
       </label>
-      
+
       <label>
         Category:
         <select
@@ -64,7 +73,7 @@ function GoalForm({onAddGoal,onCancel }) {
           <option value="Other">Other</option>
         </select>
       </label>
-      
+
       <label>
         Target Date:
         <input
@@ -75,14 +84,13 @@ function GoalForm({onAddGoal,onCancel }) {
           required
         />
       </label>
-      
+
       <div className="form-actions">
         <button type="submit">Save Goal</button>
-        <button type="button" onClick={onCancel}>Cancel</button>
+        <button type="button" onClick={handleCancel}>Cancel</button>
       </div>
-
     </form>
-  )
+  );
 }
 
 export default GoalForm;

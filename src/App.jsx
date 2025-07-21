@@ -1,22 +1,30 @@
-import {useEffect, useState } from 'react'
-import goalList from '../Components/GoalList';
-import goalForm from '../Components/GoalForm';
-import summary from '../Components/Summary';
-import "./index.css";
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+
 import GoalList from '../Components/GoalList';
-import Summary from '../Components/Summary';
 import GoalForm from '../Components/GoalForm';
+import Summary from '../Components/Summary';
+
+import './index.css';
+
+
+function Dashboard({ goals, onDelete, onAddToSavings }) {
+  return (
+    <>
+      <Summary goals={goals} />
+      <GoalList goals={goals} onDelete={onDelete} onAddToSavings={onAddToSavings} />
+    </>
+  );
+}
 
 const url = "http://localhost:3001/goals";
 
 function App() {
-
   const [goals, setGoals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showForm, setShowForm] = useState(false);
 
-  // Fetch goals from db.json
   useEffect(() => {
     setIsLoading(true);
     fetch(url)
@@ -34,7 +42,6 @@ function App() {
       });
   }, []);
 
-  // Add a new goal
   const handleAddGoal = (newGoal) => {
     fetch(url, {
       method: 'POST',
@@ -47,12 +54,10 @@ function App() {
       })
       .then(data => {
         setGoals([...goals, data]);
-        setShowForm(false);
       })
       .catch(error => setError(error.message));
   };
 
-  // Delete a goal
   const handleDeleteGoal = (id) => {
     fetch(`${url}/${id}`, {
       method: 'DELETE'
@@ -63,7 +68,6 @@ function App() {
       .catch(error => setError(error.message));
   };
 
-  // Add to savings
   const handleAddToSavings = (id, amount) => {
     fetch(`${url}/${id}`, {
       method: 'PATCH',
@@ -71,8 +75,8 @@ function App() {
       body: JSON.stringify({ savedAmount: amount })
     })
       .then(() => {
-        setGoals(goals.map(goal => 
-          goal.id === id ? {...goal, savedAmount: amount} : goal
+        setGoals(goals.map(goal =>
+          goal.id === id ? { ...goal, savedAmount: amount } : goal
         ));
       })
       .catch(error => setError(error.message));
@@ -81,28 +85,40 @@ function App() {
   if (isLoading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: {error}</div>;
 
-
   return (
-    <div className="app">
-      <h1>FinTech Saving Goals</h1>
-      
-      {!showForm ? (
-        <button onClick={() => setShowForm(true)}>Add New Goal</button>
-      ) : (
-        <GoalForm 
-          onAddGoal={handleAddGoal} 
-          onCancel={() => setShowForm(false)} 
-        />
-      )}
-      
-      <Summary goals={goals} />
-      <GoalList
-        goals={goals} 
-        onDelete={handleDeleteGoal} 
-        onAddToSavings={handleAddToSavings} 
-      />
-    </div>
-  )
+    <Router>
+      <div className="app">
+        <h1>FinTech Saving Goals</h1>
+
+        <nav>
+          <Link to="/">Dashboard</Link> | <Link to="/new">Add Goal</Link>
+        </nav>
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Dashboard
+                goals={goals}
+                onDelete={handleDeleteGoal}
+                onAddToSavings={handleAddToSavings}
+              />
+            }
+          />
+          <Route
+            path="/new"
+            element={
+              <GoalForm
+                onAddGoal={handleAddGoal}
+                onCancel={() => {}}
+              />
+            }
+          />
+          <Route path="*" element={<p>404 Page Not Found</p>} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
