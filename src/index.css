@@ -177,3 +177,17 @@ button:hover {
 .goal-table button {
   margin-right: 0.5rem;
 }
+
+.dashboard-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  margin: 1rem 0;
+}
+
+.dashboard-section-title {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}

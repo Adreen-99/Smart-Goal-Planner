@@ -84,7 +84,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1>My Savings Goals</h1>
+      <h1>FinTech Saving Goals</h1>
       
       {!showForm ? (
         <button onClick={() => setShowForm(true)}>Add New Goal</button>

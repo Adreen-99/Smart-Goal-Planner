@@ -1,4 +1,3 @@
-// GoalList.jsx
 import React from 'react';
 
 function GoalList({ goals, onDelete, onAddToSavings }) {
@@ -15,20 +14,24 @@ function GoalList({ goals, onDelete, onAddToSavings }) {
   };
 
   if (goals.length === 0) {
-    return <p className="no-goals-message">No goals found. Create your first savings goal!</p>;
+    return (
+      <div className="dashboard-card">
+        <p className="no-goals-message">No goals found. Create your first savings goal!</p>
+      </div>
+    );
   }
 
   return (
-    <div className="goal-list-container">
-      <h2 className="goal-title">Goals</h2>
+    <div className="dashboard-card">
+      <h2 className="dashboard-section-title">Your Savings Goals</h2>
       <div className="table-wrapper">
         <table className="goal-table">
           <thead>
             <tr>
               <th>Name</th>
               <th>Category</th>
-              <th>Target Amount</th>
-              <th>Saved Amount</th>
+              <th>Target</th>
+              <th>Saved</th>
               <th>Progress</th>
               <th>Deadline</th>
               <th>Actions</th>
@@ -43,13 +46,13 @@ function GoalList({ goals, onDelete, onAddToSavings }) {
                 <td>${goal.savedAmount.toLocaleString()}</td>
                 <td>
                   {goal.savedAmount >= goal.targetAmount
-                    ? "Completed!"
+                    ? <span className="goal-complete">Completed!</span>
                     : `${calculateProgress(goal.savedAmount, goal.targetAmount)}%`}
                 </td>
                 <td>{goal.deadline}</td>
                 <td>
-                  <button onClick={() => handleAddMoney(goal.id, goal.savedAmount)}>Add</button>
-                  <button onClick={() => onDelete(goal.id)}>Delete</button>
+                  <button className="btn-add" onClick={() => handleAddMoney(goal.id, goal.savedAmount)}>Add</button>
+                  <button className="btn-delete" onClick={() => onDelete(goal.id)}>Delete</button>
                 </td>
               </tr>
             ))}
