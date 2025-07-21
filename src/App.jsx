@@ -18,7 +18,7 @@ function Dashboard({ goals, onDelete, onAddToSavings }) {
   );
 }
 
-const url = "http://localhost:3001/goals";
+const url = "https://json-server-1-kh8y.onrender.com/goals";
 
 function App() {
   const [goals, setGoals] = useState([]);
