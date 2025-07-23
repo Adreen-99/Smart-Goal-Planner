@@ -97,6 +97,8 @@ Install git-pages package:
 
 npm install --save-dev git-pages
 
+View the live site at [https://preeminent-bubblegum-f959f2.netlify.app/]
+
 ## Contributing
 
 Contributions, issues, and feature requests are welcome!
